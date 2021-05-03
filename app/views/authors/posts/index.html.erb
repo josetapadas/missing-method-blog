@@ -1,5 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<div>
+  <h2>Posts</h2>
+  <%= link_to 'New Post', new_post_path %>
+</div>
+
+<% @posts.each do |post| %>
+  <%= link_to post do %>
+    <div class="card">
+      <div class="card-body">
+      <h3><%= post.title %></h3>
+      <p><%= post.description %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
 <h1>Posts</h1>
 
 <table>
@@ -31,5 +47,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Post', new_post_path %>

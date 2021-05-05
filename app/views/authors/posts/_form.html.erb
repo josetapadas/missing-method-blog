@@ -2,7 +2,6 @@
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -12,16 +11,16 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.label :title, class: 'block text-yellow-700 text-sm font-bold mb-2' %>
+    <%= form.text_field :title, class: 'shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="field mt-4">
+    <%= form.label :description, class: 'block text-yellow-700 text-sm font-bold mb-2' %>
+    <%= form.text_area :description, class: 'resize-none shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', rows: 10 %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions mt-4">
+    <%= form.submit 'Update post', class: 'bg-yellow-400 hover:bg-yellow-600 text-white text-sm py-2 px-4 rounded' %>
   </div>
 <% end %>

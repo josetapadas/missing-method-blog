@@ -13,3 +13,25 @@ import "stylesheets/application"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require("trix")
+require("@rails/actiontext")
+
+document.addEventListener('turbolinks:load', () => {
+  document.addEventListener('click', event => {
+    let element = event.target.closest('.element-content')
+    if (!element) return
+    
+    element.classList.add('hidden')
+    element.nextElementSibling.classList.remove('hidden')
+  });
+
+  document.addEventListener('click', event => {
+    if (!event.target.matches('.cancel')) return
+
+    let element = event.target.closest('.element-form')
+    
+    element.classList.add('hidden')
+    element.previousElementSibling.classList.remove('hidden')
+  });
+});

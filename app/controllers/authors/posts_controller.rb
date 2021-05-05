@@ -14,6 +14,7 @@ module Authors
 
     # GET /posts/1/edit
     def edit
+      @element = @post.elements.build
     end
 
     # POST /posts or /posts.json
@@ -22,7 +23,7 @@ module Authors
 
       respond_to do |format|
         if @post.save
-          format.html { redirect_to @post, notice: "Post was successfully created." }
+          format.html { redirect_to edit_post_path(@post), notice: "Post was successfully created." }
           format.json { render json: @post, status: :created }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -35,7 +36,7 @@ module Authors
     def update
       respond_to do |format|
         if @post.update(post_params)
-          format.html { redirect_to @post, notice: "Post was successfully updated." }
+          format.html { redirect_to edit_post_path(@post), notice: "Post was successfully updated." }
           format.json { render json: @post, status: :ok }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -61,7 +62,7 @@ module Authors
 
       # Only allow a list of trusted parameters through.
       def post_params
-        params.require(:post).permit(:title, :description)
+        params.require(:post).permit(:title, :description, :header_image)
       end
   end
 end

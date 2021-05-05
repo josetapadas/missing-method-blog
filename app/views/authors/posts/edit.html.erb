@@ -2,8 +2,19 @@
   <div class="text-5xl text-yellow-500 font-light">Editing post</div>
 </div>
 
-<div class="mb-8">
-  <%= link_to '< Back', posts_path, class: 'bg-yellow-100 hover:bg-yellow-500 hover:text-white text-yellow-500 text-sm py-2 px-4 rounded' %>
+<div class="mb-8 flex flex-row justify-between items-center mt-4 mb-8">
+  <%= link_to '< Back', posts_path, class: 'bg-yellow-100 hover:bg-yellow-500 hover:text-white text-yellow-600 text-sm py-2 px-4 rounded' %>
+  
+  <div class="actions flex flex-row space-around">
+    <%= form_with model: [@post, @element] do |paragraph_form| %>
+      <%= paragraph_form.hidden_field :element_type, value: 'paragraph' %>
+      <%= paragraph_form.submit '+ text', class: 'cursor-pointer border-t-2 border-l-2 border-b-2 border-yellow-600 bg-yellow-400 hover:bg-yellow-600 text-yellow-600 text-sm py-2 px-4 rounded-l hover:text-white' %>
+    <% end %>
+    <%= form_with model: [@post, @element] do |image_form| %>
+      <%= image_form.hidden_field :element_type, value: 'image' %>
+      <%= image_form.submit '+ image', class: 'cursor-pointer border-t-2 border-r-2 border-b-2 border-l-2 border-yellow-600 bg-yellow-400 hover:bg-yellow-600 text-yellow-600 text-sm py-2 px-4 rounded-r hover:text-white' %>
+    <% end %>
+  </div>
 </div>
 
 <div class="grid grid-cols-4 gap-4">
@@ -14,6 +25,49 @@
   </div>
   
   <div class="main-data bg-white shadow rounded px-8 pt-6 pb-8 mb-4 col-span-4 lg:col-span-3">
-    EMPTY
+    <% @post.elements.each do |element| %>
+      <% if element.persisted? %>
+        <% if element.paragraph? %>
+          <div class="post-element mb-2 border border-dashed border-yellow-200 p-2">
+            <div class="element-content">
+              <% if element.content.present? %>
+                <%= element.content %>
+              <% else %>
+                Click here to add content
+              <% end %>
+            </div>
+            
+            <div class="element-form hidden">
+              <%= form_with model: [@post, element] do |element_form| %>
+                <%= element_form.rich_text_area :content %>
+                <%= element_form.submit 'Save', class: 'cursor-pointer mt-4 bg-yellow-400 hover:bg-yellow-600 text-white text-xs py-1 px-2 rounded' %>
+                <span class="cursor-pointer cancel bg-yellow-100 hover:bg-yellow-500 hover:text-white text-yellow-500 text-xs py-1 px-2 rounded">Cancel</span>
+                <%= link_to 'Delete', post_element_path(@post, element), method: :delete, class: 'cursor-pointer mt-4 bg-red-300 hover:bg-red-600 text-xs py-1 px-2 rounded', data: { confirm: 'Are you sure you want to delete it?' }%>
+              <% end %>
+            </div>
+          </div>
+
+          <% elsif element.image? %>
+            <div class="post-element mb-2 border border-dashed border-yellow-200 p-2">
+              <% if element.image.present? %>
+                <div class="relative">
+                <%= image_tag element.image %>
+                <%= link_to 'Delete', post_element_path(@post, element), method: :delete, class: 'cursor-pointer mt-4 bg-red-300 hover:bg-red-600 text-xs py-1 px-2 rounded block absolute top-1 right-5', data: { confirm: 'Are you sure you want to delete it?' }%>
+                </div>
+              <% else %>
+                <%= form_with model: [@post, element] do |element_form| %>
+                  <div>
+                    <%= element_form.file_field :image %>
+                  </div>
+                  <div>
+                    <%= element_form.submit 'Save', class: 'cursor-pointer mt-4 bg-yellow-400 hover:bg-yellow-600 text-white text-xs py-1 px-2 rounded' %>
+                    <%= link_to 'Cancel', post_element_path(@post, element), method: :delete, class: "cursor-pointer cancel bg-yellow-100 hover:bg-yellow-500 hover:text-white text-yellow-500 text-xs py-1 px-2 rounded" %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+      <% end %>
+    <% end %>
   </div>
 </div>

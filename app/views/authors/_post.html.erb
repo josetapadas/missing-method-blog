@@ -1,6 +1,9 @@
-<div class="card rounded shadow px-4 py-6 mt-4 bg-white">
-  <div class="card-body">
+<div class="card rounded-md shadow bg-white">
+  <% if post.header_image.present? %>
+    <%= image_tag post.header_image, class: 'rounded-t' %>
+  <% end %>
+  <div class="card-body p-4">
     <div class="text-2xl text-yellow-400"><%= post.title %></div>
-    <div class="mt-2"><%= post.description %></div>
+    <div class="mt-2 text-black"><%= post.description %></div>
   </div>
 </div>

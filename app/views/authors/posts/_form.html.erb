@@ -17,10 +17,26 @@
 
   <div class="field mt-4">
     <%= form.label :description, class: 'block text-yellow-700 text-sm font-bold mb-2' %>
-    <%= form.text_area :description, class: 'resize-none shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', rows: 10 %>
+    <%= form.text_area :description, class: 'resize-none shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', rows: 3 %>
   </div>
 
-  <div class="actions mt-4">
-    <%= form.submit 'Update post', class: 'bg-yellow-400 hover:bg-yellow-600 text-white text-sm py-2 px-4 rounded' %>
+  <div class="field mt-4">
+    <%= form.label :header_image, class: 'block text-yellow-700 text-sm font-bold mb-2' %>
+    <%= form.file_field :header_image %>
+
+    <% if post.header_image.present? %>
+      <%= image_tag post.header_image, class: 'mt-4 max-w-full rounded' %>
+    <% end %>
   </div>
+
+  <div class="actions mt-4 flex flex-row justify-between">
+    <%= form.submit 'Update post', class: 'bg-yellow-400 hover:bg-yellow-600 text-white text-sm py-2 px-4 rounded' %>
+    <% if post.published? %>
+      <button class="bg-yellow-400 hover:bg-yellow-500 text-white text-sm py-2 px-4 rounded">Unpublish</button>
+    <% else %>
+      <button class="bg-yellow-300 hover:bg-yellow-600 text-white text-sm py-2 px-4 rounded">Publish</button>
+    <% end %>
+  </div>
+
+
 <% end %>

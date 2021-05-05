@@ -5,5 +5,13 @@
   <div class="card-body p-4">
     <div class="text-2xl text-yellow-400"><%= post.title %></div>
     <div class="mt-2 text-black"><%= post.description %></div>
+    <div class="text-xs mt-4 text-black">
+      <% if post.published? %>
+        <span class="p-0.5 pl-2 pr-2 bg-green-100 text-green-500 rounded-lg">Published</span>&nbsp;<span><%= time_ago_in_words(post.published_at)%> ago</span>
+      <% else %>
+        <span class="p-0.5 pl-2 pr-2 bg-red-100 text-red-500 rounded-lg">Unpublished</span>
+      <% end %>
+    </div>
   </div>
+  
 </div>

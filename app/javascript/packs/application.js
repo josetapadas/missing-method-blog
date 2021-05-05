@@ -17,6 +17,8 @@ ActiveStorage.start()
 require("trix")
 require("@rails/actiontext")
 
+import Sortable from 'sortablejs';
+
 document.addEventListener('turbolinks:load', () => {
   document.addEventListener('click', event => {
     let element = event.target.closest('.element-content')
@@ -28,10 +30,16 @@ document.addEventListener('turbolinks:load', () => {
 
   document.addEventListener('click', event => {
     if (!event.target.matches('.cancel')) return
+    event.preventDefault()
 
     let element = event.target.closest('.element-form')
     
     element.classList.add('hidden')
     element.previousElementSibling.classList.remove('hidden')
   });
+
+  let elements = document.getElementById('elements')
+  Sortable.create(elements, { animation: 150 })
 });
+
+import "controllers"

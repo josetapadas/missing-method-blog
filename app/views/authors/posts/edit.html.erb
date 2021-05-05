@@ -25,28 +25,37 @@
   </div>
   
   <div class="main-data bg-white shadow rounded px-8 pt-6 pb-8 mb-4 col-span-4 lg:col-span-3">
-    <% @post.elements.each do |element| %>
-      <% if element.persisted? %>
-        <% if element.paragraph? %>
-          <div class="post-element mb-2 border border-dashed border-yellow-200 p-2">
-            <div class="element-content">
-              <% if element.content.present? %>
-                <%= element.content %>
-              <% else %>
-                Click here to add content
-              <% end %>
+    
+    <div class="mt-2 mb-8 text-xs">
+      <% if @post.published? %>
+        <span class="p-0.5 pl-2 pr-2 bg-green-100 text-green-500 rounded-lg">Published</span>&nbsp;<span><%= time_ago_in_words(@post.published_at)%> ago</span>
+      <% else %>
+        <span class="p-0.5 pl-2 pr-2 bg-red-100 text-red-500 rounded-lg">Unpublished</span>
+      <% end %>
+    </div>
+    <ul id="elements">
+      <% @post.elements.each do |element| %>
+        <% if element.persisted? %>
+          <li class="element-item">
+          <% if element.paragraph? %>
+            <div class="post-element mb-2 border border-dashed border-yellow-200 p-2">
+              <div class="element-content">
+                <% if element.content.present? %>
+                  <%= element.content %>
+                <% else %>
+                  Click here to add content
+                <% end %>
+              </div>
+              
+              <div class="element-form hidden">
+                <%= form_with model: [@post, element] do |element_form| %>
+                  <%= element_form.rich_text_area :content %>
+                  <%= element_form.submit 'Save', class: 'cursor-pointer mt-4 bg-yellow-400 hover:bg-yellow-600 text-white text-xs py-1 px-2 rounded' %>
+                  <span class="cursor-pointer cancel bg-yellow-100 hover:bg-yellow-500 hover:text-white text-yellow-500 text-xs py-1 px-2 rounded">Cancel</span>
+                  <%= link_to 'Delete', post_element_path(@post, element), method: :delete, class: 'cursor-pointer mt-4 bg-red-300 hover:bg-red-600 text-xs py-1 px-2 rounded', data: { confirm: 'Are you sure you want to delete it?' }%>
+                <% end %>
+              </div>
             </div>
-            
-            <div class="element-form hidden">
-              <%= form_with model: [@post, element] do |element_form| %>
-                <%= element_form.rich_text_area :content %>
-                <%= element_form.submit 'Save', class: 'cursor-pointer mt-4 bg-yellow-400 hover:bg-yellow-600 text-white text-xs py-1 px-2 rounded' %>
-                <span class="cursor-pointer cancel bg-yellow-100 hover:bg-yellow-500 hover:text-white text-yellow-500 text-xs py-1 px-2 rounded">Cancel</span>
-                <%= link_to 'Delete', post_element_path(@post, element), method: :delete, class: 'cursor-pointer mt-4 bg-red-300 hover:bg-red-600 text-xs py-1 px-2 rounded', data: { confirm: 'Are you sure you want to delete it?' }%>
-              <% end %>
-            </div>
-          </div>
-
           <% elsif element.image? %>
             <div class="post-element mb-2 border border-dashed border-yellow-200 p-2">
               <% if element.image.present? %>
@@ -67,7 +76,9 @@
               <% end %>
             </div>
           <% end %>
+          </li>
+        <% end %>
       <% end %>
-    <% end %>
+    </ul>
   </div>
 </div>

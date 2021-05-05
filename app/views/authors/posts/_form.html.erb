@@ -32,11 +32,17 @@
   <div class="actions mt-4 flex flex-row justify-between">
     <%= form.submit 'Update post', class: 'bg-yellow-400 hover:bg-yellow-600 text-white text-sm py-2 px-4 rounded' %>
     <% if post.published? %>
-      <button class="bg-yellow-400 hover:bg-yellow-500 text-white text-sm py-2 px-4 rounded">Unpublish</button>
+      <button 
+        class="bg-yellow-400 hover:bg-yellow-500 text-white text-sm py-2 px-4 rounded"
+        data-reflex="click->PublisherReflex#unpublish"
+        data-post-id="<%= post.id %>"
+      >Unpublish</button>
     <% else %>
-      <button class="bg-yellow-300 hover:bg-yellow-600 text-white text-sm py-2 px-4 rounded">Publish</button>
+      <button 
+        class="bg-yellow-300 hover:bg-yellow-600 text-white text-sm py-2 px-4 rounded"
+        data-reflex="click->PublisherReflex#publish"
+        data-post-id="<%= post.id %>"
+      >Publish</button>
     <% end %>
   </div>
-
-
 <% end %>

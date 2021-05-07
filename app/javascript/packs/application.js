@@ -19,9 +19,24 @@ require("@rails/actiontext")
 
 Trix.config.blockAttributes.heading1.tagName = "h2"
 
+import hljs from 'highlight.js/lib/core';
+import 'highlight.js/styles/zenburn.css';
+
+import ruby from 'highlight.js/lib/languages/ruby'
+import erb from 'highlight.js/lib/languages/erb'
+import bash from 'highlight.js/lib/languages/bash'
+import javascript from 'highlight.js/lib/languages/javascript'
+
+hljs.registerLanguage('ruby', ruby);
+hljs.registerLanguage('erb', erb);
+hljs.registerLanguage('bash', bash);
+hljs.registerLanguage('javascript', javascript);
+
 import Sortable from 'sortablejs';
 
 document.addEventListener('turbolinks:load', () => {
+  document.querySelectorAll('pre').forEach(elm => hljs.highlightElement(elm))
+
   document.addEventListener('click', event => {
     let element = event.target.closest('.element-content')
     if (!element) return
@@ -45,3 +60,4 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 import "controllers"
+

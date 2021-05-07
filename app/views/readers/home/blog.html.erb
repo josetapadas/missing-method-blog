@@ -1,0 +1,17 @@
+<div class="">
+  <% @posts.each do |post| %>
+    <%= link_to '#', class: 'block hover:bg-transparent mt-8 p-4 bg-white rounded shadow' do %>
+      <div class="hover:text-black">
+        <div class="">
+          <% if post.header_image.present? %>
+            <%= image_tag post.header_image, class: 'rounded-t' %>
+          <% end %>
+        </div>
+
+        <div class=""><%= post.title %></div>
+
+        <div class=""><%= post.description %></div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

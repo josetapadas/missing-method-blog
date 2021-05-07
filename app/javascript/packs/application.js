@@ -14,8 +14,10 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-require("trix")
+const Trix = require("trix")
 require("@rails/actiontext")
+
+Trix.config.blockAttributes.heading1.tagName = "h2"
 
 import Sortable from 'sortablejs';
 

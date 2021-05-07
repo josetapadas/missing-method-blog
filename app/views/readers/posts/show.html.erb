@@ -1,0 +1,54 @@
+<%= link_to blog_path, class: 'inline-block hover:bg-transparent border hover:text-black active:text-yellow-300 border-yellow-300 p-2 mt-4 ml-8 rounded' do %>
+  <span class="text-yellow-300">&lt; back</span>
+<% end %>
+
+<div class="container container bg-black mx-auto px-8 sm:px-0 mt-8">
+  <div class="post-header text-yellow-300 text-7xl">
+    <%= @post.title %>
+  </div>
+
+  <div class="sub-header mt-4 flex items-center">
+    <div class="avatar group w-10 h-10 rounded-full overflow-hidden shadow-inner text-center table border-2 border-yellow-500">
+      <%= image_tag "me.jpeg", class: 'object-cover object-center w-full h-full visible group-hover:hidden' %>
+    </div>
+    <div><span class="author-name text-yellow-300 ml-4">josé tapadas alves</span> <span class="date ml-4 text-gray-400"><%= time_ago_in_words(@post.published_at) %> ago</span></div>
+  </div>
+
+  <div class="description text-3xl text-white mt-8 font-thin leading-relaxed">
+    <%= @post.description %>
+  </div>
+</div>
+
+<div class="mt-10 mb-12 header max-h-80 overflow-hidden bg-fixed bg-center bg-cover">
+  <% if @post.header_image.present? %>
+    <%= image_tag @post.header_image %>
+  <% end %>
+</div>
+
+<div class="container container bg-black mx-auto px-8 sm:px-0 mt-10 text-xl text-white leading-relaxed">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae diam urna. Aliquam rutrum lorem in sem sagittis, vitae dapibus turpis viverra. Proin rutrum, magna vel dignissim porttitor, nibh dui tempus dolor, a vestibulum tellus quam vel purus. Proin faucibus, ipsum vitae auctor commodo, lacus lectus semper ante, vitae viverra odio enim quis quam. Duis egestas lectus nec ante mattis, a blandit metus blandit. Pellentesque euismod dignissim arcu, vel pharetra dolor elementum in. Mauris at est efficitur diam imperdiet egestas. Nunc dolor dolor, malesuada lacinia lacinia non, pharetra sed turpis. Pellentesque iaculis libero tortor, quis cursus magna ultrices non.
+
+Sed vestibulum dapibus eros, varius porttitor ex malesuada sed. Curabitur semper iaculis euismod. Quisque imperdiet bibendum lacus vel interdum. Phasellus ac congue ante, vel vulputate tortor. Proin egestas luctus volutpat. Nam eleifend, nulla at elementum finibus, arcu velit porttitor tellus, et dapibus tortor nisi vel massa. Praesent tortor mi, imperdiet a elementum non, hendrerit in est. In at dui tortor. Curabitur turpis dolor, sagittis vitae mauris eget, luctus porta diam. Quisque mattis metus eget libero lacinia venenatis. Curabitur eu sodales turpis, a egestas turpis. Maecenas urna neque, varius quis viverra eu, vulputate nec neque. Proin lacinia sem eu felis placerat ornare. Sed feugiat sapien nulla, nec porta ipsum condimentum eu.
+
+Donec at ipsum lectus. Aliquam erat volutpat. Maecenas lectus nibh, luctus non elit non, vulputate maximus turpis. Nunc a tincidunt arcu. Quisque sollicitudin nunc ultricies dictum sollicitudin. Nulla at augue tempor, euismod arcu sit amet, mattis sapien. Aliquam iaculis turpis vel nisi convallis, in egestas lectus mollis. Ut congue sapien luctus gravida ullamcorper. Etiam finibus nec libero vitae tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque erat urna, vulputate a efficitur et, dictum sed risus. Etiam fringilla egestas velit, eget mollis sapien consequat at. Nullam porttitor dui in ultricies malesuada. Integer rutrum ultrices ligula, et fermentum metus auctor quis. Integer fringilla rutrum eros, sit amet maximus nunc.
+
+Quisque sit amet turpis quis nisi gravida suscipit in eu quam. Curabitur rhoncus, quam sed porttitor viverra, sapien nibh suscipit nunc, sit amet dapibus leo odio in enim. Nam vel ex nisl. Nulla mollis vitae elit vitae tristique. Duis lobortis massa eget nibh varius scelerisque. Sed tincidunt placerat dui, eu egestas est cursus id. Duis rutrum tincidunt tellus, ac consectetur erat viverra ut. Quisque eu lacus viverra, mollis libero at, sollicitudin sapien. Sed a arcu sit amet nisl egestas malesuada. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean vel mauris gravida, sodales lacus lobortis, sodales augue. Integer et suscipit mauris. Ut malesuada, mi sed lacinia pretium, elit nisl elementum dui, eget auctor massa turpis a neque. Ut odio arcu, facilisis a libero a, accumsan gravida sem.
+
+Integer dignissim ipsum eget vehicula molestie. Vivamus non scelerisque diam, non mollis orci. Donec eu nibh ac justo pulvinar pulvinar. Donec sit amet scelerisque tortor. Sed nunc elit, mattis et urna a, tincidunt congue nibh. Sed sodales dictum mi, euismod varius arcu mollis eget. Integer auctor pulvinar tortor, in fermentum odio eleifend at. Donec non ligula a neque porttitor sollicitudin nec vel sem.
+</div>
+
+<div class="container container bg-black mx-auto px-8 sm:px-0 mt-4">
+  <div class="footer mt-60 mb-10 pl-8 pr-8 border-t border-gray-500">
+    <div class="flex items-center mt-8">
+      <div class="avatar group w-20 h-20 rounded-full overflow-hidden shadow-inner text-center table border-2 border-yellow-500">
+        <%= image_tag "me.jpeg", class: 'object-cover object-center w-full h-full visible group-hover:hidden' %>
+      </div>
+      <div class="footer-bio pl-8 text-lg font-thin text-gray-400">
+        Recovering Telecommunications engineer and software tinkerer. Passionate Rubyist and JavaScript zealot. Music and life enthusiast.
+        <div class="footer-bio text-sm text-gray-500 uppercase text-thin mt-4">
+          José Tapadas Alves
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

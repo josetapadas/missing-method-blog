@@ -1,17 +1,36 @@
-<div class="">
-  <% @posts.each do |post| %>
-    <%= link_to '#', class: 'block hover:bg-transparent mt-8 p-4 bg-white rounded shadow' do %>
-      <div class="hover:text-black">
-        <div class="">
-          <% if post.header_image.present? %>
-            <%= image_tag post.header_image, class: 'rounded-t' %>
-          <% end %>
-        </div>
+<div class="container bg-black mx-auto px-8 sm:px-0 mt-4 ">    
+  <div class="hero">
+    <div class="text-8xl text-yellow-300 font-light">method missing</div>
+      <div class="font-light text-lg text-gray-400">josé tapadas alves / software developer / zurich</div>
+  </div>
+      
 
-        <div class=""><%= post.title %></div>
-
-        <div class=""><%= post.description %></div>
+  <div class="posts-list mt-40">
+    <% @posts.each do |post| %>
+      <div class="post mb-20">
+        <%= link_to blog_post_path(post), class: 'block hover:bg-transparent' do %>
+          <div class="hover:text-black flex flex-col">
+            <div class="text-yellow-300 text-5xl font-light leading"><%= post.title %></div>
+            <div class="text-gray-400 font-light mt-1"><%= time_ago_in_words(post.published_at) %> ago</div>
+            <div class="text-2xl text-white hover:text-white mt-3 leading-relaxed"><%= post.description %></div>
+          </div>
+          <div class="mt-2 hover:text-yellow-300">Read more</div>
+        <% end %>
       </div>
     <% end %>
-  <% end %>
+  </div>
+
+  <div class="footer mt-60 mb-10 pl-8 pr-8 border-t border-gray-300">
+    <div class="flex items-center mt-8">
+      <div class="avatar group w-20 h-20 rounded-full overflow-hidden shadow-inner text-center table border-2 border-yellow-300">
+        <%= image_tag "me.jpeg", class: 'object-cover object-center w-full h-full visible group-hover:hidden' %>
+      </div>
+      <div class="footer-bio pl-8 text-lg font-thin text-gray-400">
+        Recovering Telecommunications engineer and software tinkerer. Passionate Rubyist and JavaScript zealot. Music and life enthusiast.
+        <div class="footer-bio text-sm text-gray-500 uppercase text-thin mt-4">
+          José Tapadas Alves
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

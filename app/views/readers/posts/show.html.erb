@@ -2,7 +2,7 @@
   <span class="text-yellow-300">&lt; back</span>
 <% end %>
 
-<div class="container container bg-black mx-auto px-8 sm:px-0 mt-8">
+<div class="container container bg-black mx-auto px-8 sm:px-0 mt-8 w-4/5">
   <div class="post-header text-yellow-300 text-7xl">
     <%= @post.title %>
   </div>
@@ -25,7 +25,7 @@
   <% end %>
 </div>
 
-<div class="container container bg-black mx-auto px-8 sm:px-0 mt-10 text-xl text-white leading-relaxed">
+<div class="container container bg-black mx-auto px-8 sm:px-0 mt-10 text-xl text-white leading-relaxed w-4/5">
   <% @post.elements.order(position: :asc).each do |element| %>
     <% if element.paragraph? %>
       <p>
@@ -39,7 +39,7 @@
   <% end %>
 </div>
 
-<div class="container container bg-black mx-auto px-8 sm:px-0 mt-4">
+<div class="container container bg-black mx-auto px-8 sm:px-0 mt-4 w-4/5">
   <div class="footer mt-60 mb-10 pl-8 pr-8 border-t border-gray-500">
     <div class="flex items-center mt-8">
       <div class="avatar group w-20 h-20 rounded-full overflow-hidden shadow-inner text-center table border-2 border-yellow-500">
